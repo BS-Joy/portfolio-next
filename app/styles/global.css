@@ -1,0 +1,87 @@
+@import url("./sidebar.css");
+@import url("./about.css");
+@import url("./skill.css");
+@import url("./projects.css");
+@import url("./interest.css");
+@import url("./contact.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --accent: #86c232;
+  --accent_2: #61892f;
+  --black: #222629f5;
+  --black_2: #222629ea;
+  --black_3: #6b6e70;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-shippori-antique-b1-regular), sans-serif;
+  overflow-x: hidden;
+}
+
+main {
+  margin-left: 250px;
+  /* position: relative; */
+}
+
+.section-title {
+  font-size: 40px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.dark-toggler {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #353b40d1;
+  border: 2px solid var(--accent);
+}
+
+.dark-toggler:hover {
+  background-color: var(--black);
+  cursor: pointer;
+}
+
+/* mobile first */
+@media (min-width: 863px) {
+  .section-title {
+    font-size: 45px;
+  }
+
+  .dark-toggler {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (min-width: 990px) {
+  .section-title {
+    text-align: start;
+    font-size: 60px;
+  }
+}
+
+/* desktop first */
+@media (max-width: 1113px) {
+  main {
+    margin-left: 0;
+    /* width: 100%; */
+  }
+}

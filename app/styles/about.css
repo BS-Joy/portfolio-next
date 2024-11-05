@@ -1,0 +1,93 @@
+.about-section {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--black_2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  border-bottom: 2px solid var(--accent);
+  font-family: var(--font-shippori-antique-b1-regular);
+}
+
+.about-text {
+  padding-left: 4rem;
+}
+
+.about-text h2,
+.skill-card p {
+  font-family: var(--font-courier-prime-regular), Courier, monospace;
+}
+
+.about-text h2 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.about-para {
+  text-align: start;
+}
+
+.about-image img {
+  width: 100%;
+  filter: drop-shadow(0 20px 4px var(--black));
+  animation-name: heroImageAnimation;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes heroImageAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 652px) {
+  .about-image {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .about-image img {
+    width: 80%;
+  }
+
+  .about-text h2 {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  .code-icon {
+    width: 1.2rem;
+  }
+}
+
+@media (max-width: 990px) {
+  .about-section {
+    grid-template-columns: 1fr;
+  }
+
+  .about-text {
+    padding: 9rem 4rem 0;
+  }
+
+  .about-text h2 {
+    justify-content: center;
+  }
+
+  .about-para {
+    text-align: center;
+  }
+}
