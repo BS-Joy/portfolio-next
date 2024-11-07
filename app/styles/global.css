@@ -13,6 +13,7 @@
 
 :root {
   --accent: #86c232;
+  /* --accent: white; */
   --accent_2: #61892f;
   --black: #222629f5;
   --black_2: #222629ea;
@@ -25,6 +26,7 @@ html {
 
 body {
   font-family: var(--font-shippori-antique-b1-regular), sans-serif;
+  /* font-family: var(--font-courier-prime-regular), sans-serif; */
   overflow-x: hidden;
 }
 
