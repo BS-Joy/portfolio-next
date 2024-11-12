@@ -27,6 +27,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 // Menu items.
 const items = [
@@ -47,7 +48,7 @@ const items = [
   },
   {
     title: "Projects",
-    url: "#",
+    url: "/admin/projects",
     icon: MonitorCog,
   },
 ];
@@ -76,10 +77,10 @@ export function AdminSidebar() {
                       pathName === item.url && "bg-sidebar-accent"
                     }`}
                   >
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

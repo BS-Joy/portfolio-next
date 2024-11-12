@@ -1,3 +1,4 @@
+"use client";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,8 +7,11 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const NavBredCrumb = ({ pageName = "dashboard" }) => {
+const NavBredCrumb = () => {
+  const fullPath = usePathname();
+  const currentPath = fullPath.split("/")[2];
   return (
     <Breadcrumb className="border-l-[1.5px] pl-3">
       <BreadcrumbList>
@@ -16,8 +20,8 @@ const NavBredCrumb = ({ pageName = "dashboard" }) => {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink href={`/admin/${pageName}`} className="capitalize">
-            {pageName}
+          <BreadcrumbLink href={`/admin/${currentPath}`} className="capitalize">
+            {currentPath}
           </BreadcrumbLink>
         </BreadcrumbItem>
       </BreadcrumbList>
