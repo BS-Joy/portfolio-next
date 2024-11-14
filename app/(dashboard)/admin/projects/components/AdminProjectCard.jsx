@@ -7,7 +7,7 @@ import { useState } from "react";
 const AdminProjectCard = () => {
   const [c, setC] = useState(false);
   return (
-    <Card>
+    <Card className="mb-4">
       <CardContent className="p-4">
         <div className="flex justify-between items-center">
           <div className="inline-flex gap-1">

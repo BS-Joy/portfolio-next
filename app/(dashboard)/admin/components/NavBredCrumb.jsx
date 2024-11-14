@@ -16,12 +16,16 @@ const NavBredCrumb = () => {
     <Breadcrumb className="border-l-[1.5px] pl-3">
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/admin">Admin</BreadcrumbLink>
+          <BreadcrumbLink asChild>
+            <Link href="/admin">Admin</Link>
+          </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink href={`/admin/${currentPath}`} className="capitalize">
-            {currentPath}
+          <BreadcrumbLink asChild>
+            <Link href={`/admin/${currentPath}`} className="capitalize">
+              {currentPath}
+            </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
       </BreadcrumbList>

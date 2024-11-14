@@ -11,18 +11,33 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import InputField from "./InputField";
+import MultipleSelector from "@/components/ui/multiple-selector";
+
+const tech = [
+  { value: "react", label: "React" },
+  { value: "next", label: "Next Js" },
+  { value: "redux", label: "Redux" },
+  { value: "tailwind", label: "Tailwind" },
+  { value: "prisma", label: "Prisma" },
+  { value: "mongodb", label: "MongoDB" },
+];
+
+const optionSchema = z.object({
+  label: z.string(),
+  value: z.string(),
+  disable: z.boolean().optional(),
+});
 
 const formSchema = z.object({
   title: z.string().min(5, {
     message: "Title must be at least 5 characters long",
   }),
   description: z.string().min(5),
-  //   url: z.string().url(),
-  //   technologies: z.array(z.string()).min(1),
-  //   code_link: z.string().url(),
-  //   live_url: z.string().url(),
+  tags: z.array(optionSchema).min(1),
+  code_link: z.string().url(),
+  live_url: z.string().url(),
 });
 
 const AddProject = () => {
@@ -31,6 +46,9 @@ const AddProject = () => {
     defaultValues: {
       title: "",
       description: "",
+      tags: [],
+      code_link: "",
+      live_url: "",
     },
   });
 
@@ -43,41 +61,51 @@ const AddProject = () => {
       <h2 className="text-2xl font-semibold text-center">Add Project</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="p-4">
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem className="mb-3">
-                <FormLabel>Title</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Project Title"
-                    className="focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:border-2 focus-visible:border-slate-500"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
+          {/* title */}
+          <InputField form={form} name="title" placeholder="Project Title" />
+
+          {/* description */}
+          <InputField
+            form={form}
             name="description"
+            placeholder="Project Description"
+          />
+
+          {/* tags */}
+          <FormField
+            control={form.control}
+            name="tags"
             render={({ field }) => (
               <FormItem className="mb-3">
-                <FormLabel>Description</FormLabel>
+                <FormLabel className="capitalize">Technologies Used</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Project Description"
-                    className="focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:border-2 focus-visible:border-slate-500"
+                  <MultipleSelector
                     {...field}
+                    defaultOptions={tech}
+                    placeholder="Select frameworks you like..."
+                    className="focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:border-2 focus-visible:border-slate-500 focus-within:ring-0 focus-within:ring-offset-2 focus-within:ring-offset-slate-500 outline-none"
+                    emptyIndicator={
+                      <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
+                        no results found.
+                      </p>
+                    }
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+
+          {/* code link */}
+          <InputField form={form} name="code_link" placeholder="Code link" />
+
+          {/* live url */}
+          <InputField form={form} name="live_url" placeholder="Live Url" />
+
+          {/* submit button */}
+          <Button type="submit" variant="long" className="mt-4">
+            Create
+          </Button>
         </form>
       </Form>
     </div>
