@@ -1,10 +1,10 @@
 "use client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { BadgeInfo, Pencil, Trash2 } from "lucide-react";
+import { BadgeInfo, FolderGit2, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 
-const AdminProjectCard = () => {
+const AdminProjectCard = ({ project }) => {
   const [c, setC] = useState(false);
   return (
     <Card className="mb-4">
@@ -12,9 +12,9 @@ const AdminProjectCard = () => {
         <div className="flex justify-between items-center">
           <div className="inline-flex gap-1">
             <button>
-              <BadgeInfo color="#26b0de" size={21} />
+              <FolderGit2 color="#26b0de" size={21} />
             </button>
-            <h3>Lorem ipsum dolor sit.</h3>
+            <h3 className="ml-2">{project.title}</h3>
           </div>
           <div className="flex items-center gap-3">
             <button className="hover:bg-[#d0edf7] p-2 rounded-full transition-all duration-200">
@@ -28,7 +28,7 @@ const AdminProjectCard = () => {
               rootHeight={5}
               rootWidth={10}
               thumbSize={4}
-              checked={c}
+              checked={project?.publish}
               onCheckedChange={() => setC(!c)}
             />
           </div>

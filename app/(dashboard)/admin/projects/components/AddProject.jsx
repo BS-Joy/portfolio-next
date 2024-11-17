@@ -14,6 +14,10 @@ import {
 import { Button } from "@/components/ui/button";
 import InputField from "./InputField";
 import MultipleSelector from "@/components/ui/multiple-selector";
+import { toast } from "sonner";
+import { useState } from "react";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import { useRouter } from "next/navigation";
 
 const tech = [
   { value: "react", label: "React" },
@@ -41,6 +45,9 @@ const formSchema = z.object({
 });
 
 const AddProject = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,7 +60,26 @@ const AddProject = () => {
   });
 
   const onSubmit = async (values) => {
-    console.log(values);
+    try {
+      setIsLoading(true);
+      const response = await fetch("/api/project", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.status === 201) {
+        setIsLoading(false);
+        toast.success("Project created successfully.");
+        router.refresh();
+      }
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err);
+      toast.error("Failed to create project. Please try again.");
+    }
   };
 
   return (
@@ -82,7 +108,7 @@ const AddProject = () => {
                   <MultipleSelector
                     {...field}
                     defaultOptions={tech}
-                    placeholder="Select frameworks you like..."
+                    placeholder="Select technologies you used..."
                     className="focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:border-2 focus-visible:border-slate-500 focus-within:ring-0 focus-within:ring-offset-2 focus-within:ring-offset-slate-500 outline-none"
                     emptyIndicator={
                       <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
@@ -103,8 +129,20 @@ const AddProject = () => {
           <InputField form={form} name="live_url" placeholder="Live Url" />
 
           {/* submit button */}
-          <Button type="submit" variant="long" className="mt-4">
-            Create
+
+          <Button
+            disabled={isLoading}
+            type="submit"
+            variant="long"
+            className="mt-4"
+          >
+            {isLoading ? (
+              <>
+                <LoadingSpinner h={5} w={5} /> Creating...
+              </>
+            ) : (
+              "Create"
+            )}
           </Button>
         </form>
       </Form>

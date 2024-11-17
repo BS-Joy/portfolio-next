@@ -1,7 +1,7 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AdminSidebar } from "./admin/components/AdminSidebar";
 import NavBredCrumb from "./admin/components/NavBredCrumb";
-import { Separator } from "@/components/ui/separator";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata = {
   title: "BS-Joy: Admin Panel",
@@ -20,6 +20,7 @@ export default function RootLayout({ children }) {
         </div>
         {children}
       </main>
+      <Toaster richColors theme="light" />
     </SidebarProvider>
   );
 }

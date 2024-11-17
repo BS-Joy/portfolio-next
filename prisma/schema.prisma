@@ -12,7 +12,7 @@ model project {
   title       String
   description String
   tags        String[]
-  publish     Boolean
+  publish     Boolean  @default(true)
   code_link   String
   live_url    String
 }
