@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         </div>
         {children}
       </main>
-      <Toaster richColors theme="light" />
+      <Toaster richColors position="top-center" theme="light" />
     </SidebarProvider>
   );
 }

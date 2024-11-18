@@ -1,6 +1,7 @@
 import { prisma } from "@/prisma";
 import { NextResponse } from "next/server";
 
+// of: get request
 export const GET = async () => {
   try {
     const projects = await prisma.project.findMany();
@@ -11,6 +12,7 @@ export const GET = async () => {
   }
 };
 
+// of: post request
 export const POST = async (req) => {
   try {
     const data = await req.json();
@@ -30,10 +32,21 @@ export const POST = async (req) => {
   }
 };
 
+// of: delete request
 export const DELETE = async (req) => {
   try {
-    const { id } = req.params;
-    console.log(id);
+    const { id } = await req.json();
+
+    const response = await prisma.project.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    // console.log(response);
+    return NextResponse.json(id, {
+      status: 200,
+    });
   } catch (err) {
     throw new Error(err);
   }
