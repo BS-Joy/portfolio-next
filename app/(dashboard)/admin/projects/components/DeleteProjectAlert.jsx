@@ -17,29 +17,7 @@ import { toast } from "sonner";
 const DeleteProjectAlert = ({ project }) => {
   const router = useRouter();
 
-  //   const handleDelete = async () => {
-  //     try {
-  //       const response = await fetch("/api/project", {
-  //         method: "DELETE",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ id: project.id }),
-  //       });
-
-  //       const data = await response.json();
-
-  //       console.log(data);
-
-  //       toast.success("Project deleted successfully.");
-  //       router.refresh();
-  //     } catch (err) {
-  //       console.log(err);
-  //       toast.error("Failed to delete project!");
-  //     }
-  //   };
   const handleDelete = async () => {
-    // Using toast.promise
     toast.promise(
       fetch("/api/project", {
         method: "DELETE",
@@ -56,10 +34,11 @@ const DeleteProjectAlert = ({ project }) => {
       {
         loading: "Deleting project...",
         success: () => {
-          router.refresh();
+          // router.refresh();
           return "Project deleted successfully.";
         },
         error: "Failed to delete project!",
+        finally: () => router.refresh(),
       }
     );
   };

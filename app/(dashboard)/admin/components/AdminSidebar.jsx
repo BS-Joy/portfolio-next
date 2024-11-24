@@ -20,14 +20,16 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { removeCookie } from "@/app/actions/cookieActions";
 
 // Menu items.
 const items = [
@@ -53,9 +55,16 @@ const items = [
   },
 ];
 
-export function AdminSidebar() {
+export function AdminSidebar({ user }) {
   const { state } = useSidebar();
   const pathName = usePathname();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    console.log("signing out..");
+    await removeCookie();
+    router.refresh();
+  };
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>
@@ -88,13 +97,15 @@ export function AdminSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      {/* sidebar footer */}
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild className="focus-visible:ring-0">
                 <SidebarMenuButton className="ring-none">
-                  <User2 /> Username
+                  <User2 /> {user?.username}
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -102,13 +113,10 @@ export function AdminSidebar() {
                 side="top"
                 className="w-[--radix-popper-anchor-width]"
               >
-                <DropdownMenuItem className="focus:bg-zinc-50 cursor-pointer">
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="focus:bg-zinc-50 cursor-pointer">
-                  <span>Billing</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="focus:bg-zinc-50 cursor-pointer">
+                <DropdownMenuItem
+                  onClick={handleSignOut}
+                  className="focus:bg-zinc-50 cursor-pointer"
+                >
                   <span>Sign out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>

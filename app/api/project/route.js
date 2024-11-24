@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export const GET = async () => {
   try {
     const projects = await prisma.project.findMany();
-    // console.log(projects);
+
     return Response.json(projects);
   } catch (err) {
     throw new Error(err);
@@ -16,10 +16,8 @@ export const GET = async () => {
 export const POST = async (req) => {
   try {
     const data = await req.json();
-    const refinedTags = data?.tags?.map((tag) => tag.value);
 
     data["publish"] = true;
-    data.tags = refinedTags;
 
     const response = await prisma.project.create({ data: data });
 
@@ -43,8 +41,7 @@ export const DELETE = async (req) => {
       },
     });
 
-    // console.log(response);
-    return NextResponse.json(id, {
+    return NextResponse.json(response, {
       status: 200,
     });
   } catch (err) {
