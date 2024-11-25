@@ -34,7 +34,7 @@ export const POST = async (req) => {
       name: "user",
       value: token,
       httpOnly: true,
-      maxAge: 60,
+      maxAge: "1h",
       path: "/admin",
     });
 

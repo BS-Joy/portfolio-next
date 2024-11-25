@@ -24,12 +24,11 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { removeCookie } from "@/app/actions/cookieActions";
+import LogoutButton from "./LogoutButton";
 
 // Menu items.
 const items = [
@@ -55,16 +54,11 @@ const items = [
   },
 ];
 
-export function AdminSidebar({ user }) {
+export function AdminSidebar() {
   const { state } = useSidebar();
   const pathName = usePathname();
   const router = useRouter();
 
-  const handleSignOut = async () => {
-    console.log("signing out..");
-    await removeCookie();
-    router.refresh();
-  };
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>
@@ -99,7 +93,7 @@ export function AdminSidebar({ user }) {
       </SidebarContent>
 
       {/* sidebar footer */}
-      <SidebarFooter>
+      {/* <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
@@ -113,17 +107,12 @@ export function AdminSidebar({ user }) {
                 side="top"
                 className="w-[--radix-popper-anchor-width]"
               >
-                <DropdownMenuItem
-                  onClick={handleSignOut}
-                  className="focus:bg-zinc-50 cursor-pointer"
-                >
-                  <span>Sign out</span>
-                </DropdownMenuItem>
+                <LogoutButton />
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarFooter>
+      </SidebarFooter> */}
     </Sidebar>
   );
 }

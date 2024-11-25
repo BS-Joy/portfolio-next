@@ -2,7 +2,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AdminSidebar } from "./components/AdminSidebar";
 import NavBredCrumb from "./components/NavBredCrumb";
 import { Toaster } from "@/components/ui/sonner";
-import { getUser } from "@/app/actions/cookieActions";
+import UserDropDown from "./components/UserDropDown";
 
 export const metadata = {
   title: "BS-Joy: Admin Panel",
@@ -10,16 +10,17 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const user = await getUser();
-
   return (
     <SidebarProvider>
-      <AdminSidebar user={user} />
+      <AdminSidebar />
 
       <main className="w-full">
-        <div className="flex items-center gap-1 ml-3 mt-2">
-          <SidebarTrigger className="" />
-          <NavBredCrumb />
+        <div className="flex justify-between items-center gap-1 mx-3 mt-2">
+          <div className="flex items-center gap-1 ml-3 mt-2">
+            <SidebarTrigger className="" />
+            <NavBredCrumb />
+          </div>
+          <UserDropDown />
         </div>
         {children}
       </main>
