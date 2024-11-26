@@ -10,6 +10,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+  // console.log(Date.now());
   return (
     <SidebarProvider>
       <AdminSidebar />

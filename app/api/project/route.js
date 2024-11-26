@@ -1,4 +1,6 @@
+import { getUser } from "@/app/actions/cookieActions";
 import { prisma } from "@/prisma";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 // of: get request
@@ -16,6 +18,12 @@ export const GET = async () => {
 export const POST = async (req) => {
   try {
     const data = await req.json();
+
+    const res = NextResponse.next();
+
+    const user = res.cookies.get("user");
+
+    console.log(user);
 
     data["publish"] = true;
 
