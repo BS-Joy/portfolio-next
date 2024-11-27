@@ -19,16 +19,6 @@ export const POST = async (req) => {
   try {
     const data = await req.json();
 
-    const headerList = await headers();
-
-    const user = headerList.get("User-Auth");
-
-    const cookieStore = await cookies();
-
-    const authToken = req.cookies.get("user");
-
-    console.log(authToken);
-
     data["publish"] = true;
 
     const response = await prisma.project.create({ data: data });

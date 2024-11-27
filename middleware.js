@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
 
 export async function middleware(req) {
   const { pathname } = req.nextUrl;
+  const cookie = req.cookies.get("user");
 
   // Check if the request is for the admin panel
   if (pathname.startsWith("/admin")) {
     // Get the cookies from the request
-    const cookie = req.cookies.get("user");
+    // const cookie = req.cookies.get("user");
 
     // If no session cookie is found, redirect to the login page
     if (!cookie) {
@@ -50,6 +52,14 @@ export async function middleware(req) {
           path: "/admin",
         });
 
+        response.cookies.set({
+          name: "user",
+          value: newToken,
+          httpOnly: true,
+          maxAge: "1h",
+          path: "/api",
+        });
+
         return response;
       }
     } catch (err) {
@@ -63,10 +73,16 @@ export async function middleware(req) {
     return NextResponse.next();
   }
 
+  if (req.method !== "GET") {
+    console.log("Not a get request");
+
+    console.log("Not a GET request", cookie);
+  }
+
   // Allow all other requests to proceed
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*"], // Apply middleware to all /admin routes]
+  matcher: ["/admin/:path*", "/api/:path*"], // Apply middleware to all /admin routes and /api routes
 };

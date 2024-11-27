@@ -2,8 +2,7 @@ import AdminProjectCard from "./AdminProjectCard";
 
 const ProjectLists = async () => {
   const projects = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/project`,
-    { next: { tags: ["projects"] } }
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/project`
   );
   const projectLists = await projects.json();
 

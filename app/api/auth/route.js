@@ -38,6 +38,14 @@ export const POST = async (req) => {
       path: "/admin",
     });
 
+    cookieStore.set({
+      name: "user",
+      value: token,
+      httpOnly: true,
+      maxAge: "1h",
+      path: "/api",
+    });
+
     return NextResponse.json("Log In Successfull.", {
       status: 200,
     });

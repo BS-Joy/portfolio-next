@@ -1,17 +1,13 @@
 "use server";
 
 import { verifyToken } from "@/utils/tokenUtils";
-// import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { NextResponse } from "next/server";
 
 export const getUser = async () => {
   const cookieStore = await cookies();
 
   const userToken = cookieStore.get("user");
-
-  // console.log(userToken);
 
   const userDetails = verifyToken(userToken?.value);
 
@@ -19,13 +15,14 @@ export const getUser = async () => {
 };
 
 export const removeCookie = async () => {
-  // console.log("removing cookies...");
-
-  // const cookieStore = await cookies();
-
   (await cookies()).set("user", " ", {
     maxAge: 0,
     path: "/admin",
+  });
+
+  (await cookies()).set("user", " ", {
+    maxAge: 0,
+    path: "/api",
   });
 
   redirect("/login");

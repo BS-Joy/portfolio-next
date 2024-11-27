@@ -59,6 +59,7 @@ const AddProject = ({ user }) => {
           "User-Auth": JSON.stringify(user),
         },
         body: JSON.stringify(values),
+        credentials: "include",
       });
 
       if (response.status === 201) {
