@@ -25,7 +25,7 @@ export async function middleware(req) {
       const { iat, exp, ...rest } = decodedToken;
 
       if (isExpired) {
-        console.log("token expired");
+        // console.log("token expired");
 
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_URL}/api/token`,

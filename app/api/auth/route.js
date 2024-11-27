@@ -24,7 +24,7 @@ export const POST = async (req) => {
       return NextResponse.json("Your password is wrong!", { status: 401 });
     }
 
-    const { password, ...restData } = user;
+    const { password, email, ...restData } = user;
 
     const token = generateToken(restData);
 

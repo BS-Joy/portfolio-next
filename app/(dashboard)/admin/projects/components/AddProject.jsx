@@ -34,7 +34,7 @@ const formSchema = z.object({
   live_url: z.string().url(),
 });
 
-const AddProject = () => {
+const AddProject = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -56,6 +56,7 @@ const AddProject = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "User-Auth": JSON.stringify(user),
         },
         body: JSON.stringify(values),
       });
