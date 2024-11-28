@@ -19,6 +19,14 @@ export const POST = async (req) => {
   try {
     const data = await req.json();
 
+    const authToken = req.cookies.get("api-auth")?.value;
+
+    if (authToken === undefined) {
+      return NextResponse.json("Not authorized to access.", {
+        status: 401,
+      });
+    }
+
     data["publish"] = true;
 
     const response = await prisma.project.create({ data: data });
@@ -36,6 +44,16 @@ export const POST = async (req) => {
 export const DELETE = async (req) => {
   try {
     const { id } = await req.json();
+
+    const authToken = req.cookies.get("api-auth")?.value;
+
+    console.log({ authToken });
+
+    if (authToken === undefined) {
+      return NextResponse.json("Not authorized to access.", {
+        status: 401,
+      });
+    }
 
     const response = await prisma.project.delete({
       where: {

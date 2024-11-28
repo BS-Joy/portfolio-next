@@ -4,21 +4,20 @@ import { cookies } from "next/headers";
 
 export async function middleware(req) {
   const { pathname } = req.nextUrl;
-  const cookie = req.cookies.get("user");
 
   // Check if the request is for the admin panel
   if (pathname.startsWith("/admin")) {
-    // Get the cookies from the request
-    // const cookie = req.cookies.get("user");
+    // of: Getting all the cookies from the request
+    const cookie = req.cookies.get("user");
+    let remainingSession = req.cookies.get("remainingSession")?.value;
 
-    // If no session cookie is found, redirect to the login page
+    // of: If no session cookie is found, redirect to the login page
     if (!cookie) {
       const loginUrl = new URL("/login", req.nextUrl.origin);
       return NextResponse.redirect(loginUrl);
     }
 
-    // Validate the session if necessary (optional, depending on implementation)
-    // For example, decode the session token or check its validity.
+    // of: Validating the session
     try {
       const decodedToken = jwt.decode(cookie?.value);
 
@@ -27,7 +26,9 @@ export async function middleware(req) {
       const { iat, exp, ...rest } = decodedToken;
 
       if (isExpired) {
-        // console.log("token expired");
+        const response = NextResponse.next();
+
+        remainingSession = parseInt(remainingSession - 300000);
 
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_URL}/api/token`,
@@ -42,22 +43,25 @@ export async function middleware(req) {
 
         const newToken = await res.json();
 
-        const response = NextResponse.next();
-
         response.cookies.set({
           name: "user",
           value: newToken,
           httpOnly: true,
-          maxAge: "1h",
+          maxAge: remainingSession,
           path: "/admin",
         });
 
         response.cookies.set({
-          name: "user",
+          name: "api-auth",
           value: newToken,
           httpOnly: true,
-          maxAge: "1h",
+          maxAge: remainingSession,
           path: "/api",
+        });
+
+        response.cookies.set({
+          name: "remainingSession",
+          value: remainingSession,
         });
 
         return response;
@@ -65,18 +69,16 @@ export async function middleware(req) {
     } catch (err) {
       console.error("jwt validation error");
 
+      (await cookies()).set("remainingSession", " ", {
+        maxAge: 0,
+      });
+
       const loginUrl = new URL("/login", req.nextUrl.origin);
       return NextResponse.redirect(loginUrl);
     }
 
     // If session is valid, allow the request to proceed
     return NextResponse.next();
-  }
-
-  if (req.method !== "GET") {
-    console.log("Not a get request");
-
-    console.log("Not a GET request", cookie);
   }
 
   // Allow all other requests to proceed

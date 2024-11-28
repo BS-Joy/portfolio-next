@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import bcrypt, { hash } from "bcrypt";
 import { generateToken, verifyToken } from "@/utils/tokenUtils";
 import { cookies } from "next/headers";
+import { COOKIE_EXPIRES } from "@/utils";
 
 export const POST = async (req) => {
   try {
@@ -39,11 +40,17 @@ export const POST = async (req) => {
     });
 
     cookieStore.set({
-      name: "user",
+      name: "api-auth",
       value: token,
       httpOnly: true,
       maxAge: "1h",
       path: "/api",
+    });
+
+    cookieStore.set({
+      name: "remainingSession",
+      value: 3600000,
+      maxAge: "1h",
     });
 
     return NextResponse.json("Log In Successfull.", {

@@ -20,9 +20,13 @@ export const removeCookie = async () => {
     path: "/admin",
   });
 
-  (await cookies()).set("user", " ", {
+  (await cookies()).set("api-auth", " ", {
     maxAge: 0,
     path: "/api",
+  });
+
+  (await cookies()).set("remainingSession", " ", {
+    maxAge: 0,
   });
 
   redirect("/login");

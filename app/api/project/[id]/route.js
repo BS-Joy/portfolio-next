@@ -6,6 +6,14 @@ export const PATCH = async (req, { params }) => {
     const updatedData = await req.json();
     const { id } = await params;
 
+    const authToken = req.cookies.get("api-auth")?.value;
+
+    if (authToken === undefined) {
+      return NextResponse.json("Not authorized to access.", {
+        status: 401,
+      });
+    }
+
     const response = await prisma.project.update({
       where: { id: id },
       data: updatedData,
