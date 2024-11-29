@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import InputField from "../../admin/projects/components/InputField";
+import InputField from "../../admin/components/InputField";
 import { useState } from "react";
 import { toast } from "sonner";
 

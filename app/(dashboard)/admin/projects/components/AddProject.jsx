@@ -7,16 +7,6 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import CreateUpdateForm from "./CreateUpdateForm";
-import LoadingSpinner from "@/components/LoadingSpinner";
-
-const tech = [
-  { value: "react", label: "React" },
-  { value: "next", label: "Next Js" },
-  { value: "redux", label: "Redux" },
-  { value: "tailwind", label: "Tailwind" },
-  { value: "prisma", label: "Prisma" },
-  { value: "mongodb", label: "MongoDB" },
-];
 
 const optionSchema = z.object({
   label: z.string(),

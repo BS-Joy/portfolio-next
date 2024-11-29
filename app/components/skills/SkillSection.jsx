@@ -1,12 +1,14 @@
 "use client";
-import Image from "next/image";
+
 import { FaHtml5 } from "react-icons/fa6";
 import { FaCss3Alt } from "react-icons/fa6";
 import { FaBootstrap } from "react-icons/fa6";
-import tailwindThumbnail from "@/public/images/tailwind.png";
-import { FaJsSquare } from "react-icons/fa";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { FaJs } from "react-icons/fa6";
 import { FaReact } from "react-icons/fa6";
 import { IconContext } from "react-icons";
+import { RiNextjsFill } from "react-icons/ri";
+import { TbBrandRedux } from "react-icons/tb";
 
 const SkillSection = () => {
   return (
@@ -55,7 +57,16 @@ const SkillSection = () => {
           <p>Bootstrap</p>
         </div>
         <div className="skill-card tailwind">
-          <Image src={tailwindThumbnail} alt="tailwind" />
+          <IconContext.Provider
+            value={{
+              style: {
+                filter: "drop-shadow(4px 13px 9px #131617)",
+              },
+              className: "skill-icon",
+            }}
+          >
+            <RiTailwindCssFill size={"50px"} />
+          </IconContext.Provider>
           <p>Tailwind</p>
         </div>
         <div className="skill-card javascript">
@@ -67,7 +78,7 @@ const SkillSection = () => {
               className: "skill-icon",
             }}
           >
-            <FaJsSquare size={"50px"} />
+            <FaJs size={"50px"} />
           </IconContext.Provider>
           <p>Javascript</p>
         </div>
@@ -83,6 +94,34 @@ const SkillSection = () => {
             <FaReact size={"50px"} />
           </IconContext.Provider>
           <p>React</p>
+        </div>
+
+        <div className="skill-card next">
+          <IconContext.Provider
+            value={{
+              style: {
+                filter: "drop-shadow(4px 13px 9px #131617)",
+              },
+              className: "skill-icon",
+            }}
+          >
+            <RiNextjsFill size={"50px"} />
+          </IconContext.Provider>
+          <p>Next JS</p>
+        </div>
+
+        <div className="skill-card redux">
+          <IconContext.Provider
+            value={{
+              style: {
+                filter: "drop-shadow(4px 13px 9px #131617)",
+              },
+              className: "skill-icon",
+            }}
+          >
+            <TbBrandRedux size={"50px"} />
+          </IconContext.Provider>
+          <p>Redux</p>
         </div>
       </div>
     </section>

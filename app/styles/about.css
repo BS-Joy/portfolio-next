@@ -13,8 +13,7 @@
   padding-left: 4rem;
 }
 
-.about-text h2,
-.skill-card p {
+.about-text h2 {
   font-family: var(--font-courier-prime-regular), Courier, monospace;
 }
 

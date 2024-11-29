@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const InputField = ({ form, name, placeholder, type }) => {
+const InputField = ({ form, name, placeholder, type = "text" }) => {
   const label = name.includes("_") ? name.replace("_", " ") : name;
   return (
     <FormField

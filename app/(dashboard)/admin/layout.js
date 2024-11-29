@@ -16,9 +16,9 @@ export default async function RootLayout({ children }) {
       <AdminSidebar />
 
       <main className="w-full">
-        <div className="flex justify-between items-center gap-1 mx-3 mt-2">
+        <div className="flex justify-between items-center gap-1 ml-3 mr-8 mt-2">
           <div className="flex items-center gap-1 ml-3 mt-2">
-            <SidebarTrigger className="" />
+            <SidebarTrigger />
             <NavBredCrumb />
           </div>
           <UserDropDown />

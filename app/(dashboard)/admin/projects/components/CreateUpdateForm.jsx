@@ -9,10 +9,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import InputField from "./InputField";
 import MultipleSelector from "@/components/ui/multiple-selector";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import TextAreaField from "./TextAreaField";
+import InputField from "../../components/InputField";
 
 const tech = [
   { value: "react", label: "React" },

@@ -75,9 +75,24 @@
   color: #60dbfa;
 }
 
+.next {
+  color: white;
+}
+
+.redux {
+  color: #ba8fff;
+}
+
 .skill-card p {
   font-size: 21px;
   text-shadow: 4px 13px 9px #131617a2;
+  font-family: var(--font-courier-prime-regular), Courier, monospace;
+}
+
+.skill-card-text {
+  font-size: 21px;
+  text-shadow: 4px 13px 9px #131617a2;
+  font-family: var(--font-courier-prime-regular), Courier, monospace;
 }
 
 .skill-card img {
