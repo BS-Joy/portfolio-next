@@ -27,7 +27,15 @@ model user {
 model about {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   name        String @unique
+  ppUrl       String
   designation String
   bio         String
   interests   String
+}
+
+model socials {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  label  String
+  link   String
+  enable Boolean
 }

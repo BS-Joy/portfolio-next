@@ -1,6 +1,5 @@
 "use client";
 
-import { z } from "zod";
 import {
   Dialog,
   DialogContent,
@@ -10,11 +9,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Pencil } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 import AboutForm from "./AboutForm";
 
 const UpdateAboutDialog = ({ aboutData }) => {

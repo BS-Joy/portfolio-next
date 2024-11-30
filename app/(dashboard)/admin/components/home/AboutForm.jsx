@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  // name: z.string().min(3),
+  name: z.string().min(3),
   designation: z.string().min(3),
   bio: z.string().min(10),
   interests: z.string().min(10),
@@ -26,7 +26,7 @@ const AboutForm = ({ aboutData }) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      // name: aboutData?.name,
+      name: aboutData?.name,
       designation: aboutData?.designation,
       bio: aboutData?.bio,
       interests: aboutData?.interests,
@@ -61,7 +61,12 @@ const AboutForm = ({ aboutData }) => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="p-4">
         {/* name */}
-        {/* <InputField form={form} name="name" placeholder="My Name" /> */}
+        <InputField
+          form={form}
+          name="name"
+          placeholder="My Name"
+          disabled={true}
+        />
 
         {/* Designation */}
         <InputField form={form} name="designation" placeholder="Designation" />

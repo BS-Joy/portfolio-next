@@ -21,14 +21,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import LogoutButton from "./LogoutButton";
 
 // Menu items.
 const items = [
@@ -37,16 +31,16 @@ const items = [
     url: "/admin",
     icon: LayoutDashboard,
   },
-  {
-    title: "Pages",
-    url: "#",
-    icon: BookOpenText,
-  },
-  {
-    title: "Skills",
-    url: "#",
-    icon: CodeXml,
-  },
+  // {
+  //   title: "Pages",
+  //   url: "#",
+  //   icon: BookOpenText,
+  // },
+  // {
+  //   title: "Skills",
+  //   url: "#",
+  //   icon: CodeXml,
+  // },
   {
     title: "Projects",
     url: "/admin/projects",
@@ -57,7 +51,6 @@ const items = [
 export function AdminSidebar() {
   const { state } = useSidebar();
   const pathName = usePathname();
-  const router = useRouter();
 
   return (
     <Sidebar collapsible="icon">

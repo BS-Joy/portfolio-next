@@ -10,7 +10,7 @@ const Sidebar = () => {
           <Image className="profile-pic" src={myThumbnail} alt="profile" />
         </div>
         <SidebarItems />
-        {/* <!-- <footer>copyright © 2022 all right reserved</footer> --> */}
+        {/* <footer>copyright © 2022 all right reserved</footer> */}
       </section>
     </div>
   );

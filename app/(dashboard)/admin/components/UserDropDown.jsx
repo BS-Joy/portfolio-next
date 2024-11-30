@@ -3,12 +3,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 
 const UserDropDown = async () => {
-  const user = await getUser();
-  // console.log("user:", user);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/about`);
+
+  const aboutData = await res.json();
   return (
     <div className="flex items-center gap-2 mt-3">
       <Avatar className="h-7 w-7">
-        <AvatarImage src="https://res.cloudinary.com/dplw9tch5/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1732611583/IMG_8253-min_vs3dzg.jpg" />
+        <AvatarImage src={aboutData?.ppUrl} />
         <AvatarFallback>BS</AvatarFallback>
       </Avatar>
       <Separator orientation="vertical" className="h-6" />

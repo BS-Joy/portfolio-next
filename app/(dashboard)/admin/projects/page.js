@@ -7,13 +7,9 @@ import { cookies } from "next/headers";
 const Page = async () => {
   const user = await getUser();
 
-  // const userCookie = (await cookies()).get("user")?.value;
-
-  // console.log(userCookie);
-
   return (
     <div className="w-full p-4">
-      <div className="flex gap-5 mt-6">
+      <div className="flex flex-col lg:flex-row gap-5 mt-6">
         <ProjectLists />
         <AddProject user={user} />
       </div>

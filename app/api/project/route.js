@@ -47,8 +47,6 @@ export const DELETE = async (req) => {
 
     const authToken = req.cookies.get("api-auth")?.value;
 
-    console.log({ authToken });
-
     if (authToken === undefined) {
       return NextResponse.json("Not authorized to access.", {
         status: 401,

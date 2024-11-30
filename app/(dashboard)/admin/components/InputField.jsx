@@ -8,7 +8,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const InputField = ({ form, name, placeholder, type = "text" }) => {
+const InputField = ({
+  form,
+  name,
+  placeholder,
+  type = "text",
+  disabled = false,
+}) => {
   const label = name.includes("_") ? name.replace("_", " ") : name;
   return (
     <FormField
@@ -19,6 +25,7 @@ const InputField = ({ form, name, placeholder, type = "text" }) => {
           <FormLabel className="capitalize">{label}</FormLabel>
           <FormControl>
             <Input
+              disabled={disabled}
               type={type}
               placeholder={placeholder}
               className="focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:border-2 focus-visible:border-slate-500"

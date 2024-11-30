@@ -21,7 +21,7 @@ export const dashboardIcons = {
   },
 };
 
-export const getDashboardIcon = (cardTitle) => {
+const getDashboardIcon = (cardTitle) => {
   let Icon;
 
   switch (cardTitle) {
@@ -59,3 +59,5 @@ export const getDashboardIcon = (cardTitle) => {
 
   return Icon;
 };
+
+export default getDashboardIcon;

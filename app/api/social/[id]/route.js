@@ -15,12 +15,12 @@ export const PATCH = async (req, { params }) => {
       });
     }
 
-    const about = await prisma.about.update({
+    const res = await prisma.socials.update({
       where: { id: id },
       data: data,
     });
 
-    return NextResponse.json("updated", {
+    return NextResponse.json("Link Updated.", {
       status: 200,
     });
   } catch (err) {
