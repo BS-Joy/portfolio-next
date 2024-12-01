@@ -1,8 +1,10 @@
 import Image from "next/image";
 import myThumbnail from "@/public/images/me.png";
 import { FaCode } from "react-icons/fa6";
+import { getAboutData } from "@/queries";
 
-const About = () => {
+const About = async () => {
+  const { designation, bio } = await getAboutData();
   return (
     <section id="about" className="about-section">
       <div className="about-text">
@@ -11,15 +13,13 @@ const About = () => {
           <span>
             <FaCode size={"1.7rem"} className="code-icon" />
           </span>{" "}
-          Frontend Developer{" "}
+          {designation}{" "}
           <span>
             <FaCode size={"1.7rem"} className="code-icon" />
           </span>
         </h2>
 
-        <p className="about-para">
-          A passionate front-end web developer. Loves trying new technologies.
-        </p>
+        <p className="about-para">{bio}</p>
       </div>
       <div className="about-image">
         <Image src={myThumbnail} alt="hero thumbnail" />

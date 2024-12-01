@@ -1,11 +1,11 @@
 import { getUser, removeCookie } from "@/app/actions/cookieActions";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import { getAboutData } from "@/queries";
 
 const UserDropDown = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/about`);
+  const aboutData = await getAboutData();
 
-  const aboutData = await res.json();
   return (
     <div className="flex items-center gap-2 mt-3">
       <Avatar className="h-7 w-7">

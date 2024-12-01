@@ -1,4 +1,5 @@
 import { prisma } from "@/prisma";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export const PATCH = async (req, { params }) => {
@@ -19,6 +20,8 @@ export const PATCH = async (req, { params }) => {
       where: { id: id },
       data: data,
     });
+
+    revalidatePath("/admin");
 
     return NextResponse.json("updated", {
       status: 200,

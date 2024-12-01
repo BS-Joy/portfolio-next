@@ -4,13 +4,13 @@ import { MonitorCog } from "lucide-react";
 import AboutSection from "./components/home/AboutSection";
 import Image from "next/image";
 import UploadImage from "./components/UploadImage";
-import SocialLinkCard from "./components/SocialLinkCard";
 import SocialLinkLists from "./components/SocialLinkLists";
+import { getAboutData, getSocialLinks } from "@/queries";
 
 const AdminPage = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/about`);
+  const socialLinks = await getSocialLinks();
 
-  const aboutData = await res.json();
+  const aboutData = await getAboutData();
 
   return (
     <div className="w-full flex flex-col justify-center mt-4 px-8 py-4">
@@ -39,7 +39,7 @@ const AdminPage = async () => {
         </div>
 
         {/* social link lists */}
-        <SocialLinkLists />
+        <SocialLinkLists socialLinks={socialLinks} />
       </div>
     </div>
   );
