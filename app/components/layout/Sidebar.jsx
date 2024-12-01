@@ -9,7 +9,13 @@ const Sidebar = async () => {
     <div>
       <section className="sidebar">
         <div className="sidebar-top">
-          <Image className="profile-pic" src={ppUrl} alt="profile" />
+          <Image
+            className="profile-pic"
+            width={200}
+            height={200}
+            src={ppUrl}
+            alt="profile"
+          />
         </div>
         <SidebarItems />
         {/* <footer>copyright © 2022 all right reserved</footer> */}
