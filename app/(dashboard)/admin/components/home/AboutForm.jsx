@@ -47,13 +47,13 @@ const AboutForm = ({ aboutData }) => {
 
       if (response.status === 200) {
         setIsLoading(false);
-        toast.success("Project updated successfully.");
+        toast.success("Updated successfully.");
         router.refresh();
       }
     } catch (err) {
       setIsLoading(false);
       console.log(err);
-      toast.error("Failed to create project. Please try again.");
+      toast.error("Failed to update!");
     }
   };
 
