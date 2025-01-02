@@ -1,5 +1,6 @@
 import { getUser } from "@/app/actions/cookieActions";
 import { prisma } from "@/prisma";
+import { revalidatePath } from "next/cache";
 import { cookies, headers } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -7,6 +8,8 @@ import { NextResponse } from "next/server";
 export const GET = async () => {
   try {
     const projects = await prisma.project.findMany();
+
+    revalidatePath("/");
 
     return Response.json(projects);
   } catch (err) {
