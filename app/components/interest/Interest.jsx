@@ -1,8 +1,6 @@
-import { getAboutData } from "@/queries";
 import React from "react";
 
-const Interest = async () => {
-  const { interests } = await getAboutData();
+const Interest = async ({ interests }) => {
   return (
     <section id="interests" className="interests-section">
       <div className="interests-text">

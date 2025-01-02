@@ -1,14 +1,12 @@
 import Image from "next/image";
 import myThumbnail from "@/public/images/me.png";
 import { FaCode } from "react-icons/fa6";
-import { getAboutData } from "@/queries";
 
-const About = async () => {
-  const { designation, bio } = await getAboutData();
+const About = async ({ name, designation, bio }) => {
   return (
     <section id="about" className="about-section">
       <div className="about-text">
-        <h1 className="section-title">Badhan Samadder Joy</h1>
+        <h1 className="section-title">{name}</h1>
         <h2>
           <span>
             <FaCode size={"1.7rem"} className="code-icon" />

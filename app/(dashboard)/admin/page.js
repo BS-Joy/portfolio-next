@@ -5,12 +5,13 @@ import AboutSection from "./components/home/AboutSection";
 import Image from "next/image";
 import UploadImage from "./components/UploadImage";
 import SocialLinkLists from "./components/SocialLinkLists";
-import { getAboutData, getSocialLinks } from "@/queries";
 
 const AdminPage = async () => {
-  const socialLinks = await getSocialLinks();
+  const abouts = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/about`);
+  const aboutData = await abouts.json();
 
-  const aboutData = await getAboutData();
+  const socials = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/social`);
+  const socialLinks = await socials.json();
 
   return (
     <div className="w-full flex flex-col justify-center mt-4 px-8 py-4">

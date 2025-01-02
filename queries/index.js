@@ -1,5 +1,4 @@
 import { prisma } from "@/prisma";
-import { revalidatePath } from "next/cache";
 
 export const getPorjects = async () => {
   try {
@@ -24,8 +23,6 @@ export const getAboutData = async () => {
 export const getSocialLinks = async () => {
   try {
     const res = await prisma.socials.findMany();
-
-    // revalidatePath("/");
 
     return res;
   } catch (err) {

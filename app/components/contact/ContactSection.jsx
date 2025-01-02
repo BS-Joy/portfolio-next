@@ -1,4 +1,3 @@
-import { getSocialLinks } from "@/queries";
 import {
   FaGithub,
   FaLinkedin,
@@ -6,8 +5,7 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 
-const ContactSection = async () => {
-  const socialLinks = await getSocialLinks();
+const ContactSection = async ({ socialLinks }) => {
   return (
     <section id="contacts" className="contact-section">
       <div className="ml-16">

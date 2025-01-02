@@ -1,8 +1,6 @@
-import { getPorjects } from "@/queries";
 import ProjectCard from "./ProjectCard";
 
 const Projects = async () => {
-  // const projects = await getPorjects();
   const projectLists = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/project`
   );
