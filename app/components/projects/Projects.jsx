@@ -2,7 +2,11 @@ import { getPorjects } from "@/queries";
 import ProjectCard from "./ProjectCard";
 
 const Projects = async () => {
-  const projects = await getPorjects();
+  // const projects = await getPorjects();
+  const projectLists = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/project`
+  );
+  const projects = await projectLists.json();
   return (
     <section id="projects" className="projects-section pt-6">
       <div className="ml-16">
